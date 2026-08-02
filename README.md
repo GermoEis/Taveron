@@ -72,5 +72,4 @@ Cross-Origin-Resource-Policy: same-origin
 
 ## Enne avaldamist
 
-Kontrolli `src/App.jsx` failis olev e-posti aadress üle ja asenda see vajadusel
-avaliku kontaktiaadressiga.
+Kontrolli, et GitHub Actionsi build kasutab õiget Formspree endpointi.

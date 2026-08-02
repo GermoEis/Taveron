@@ -9,8 +9,17 @@ const sharedImages = {
 export const projectsByLanguage = {
   et: [
     {
-      title: "Dokumenditöötluse rakendus",
+      title: "Dokumenditöötluse töölaud",
       type: "Sisemise töövoo automatiseerimine",
+      summary: "Ühest vaatest juhitav dokumenditöötluse rakendus.",
+      description: "Rakendus ühendab OCR-i, dokumentide jagamise, metaandmete töötlemise ja andmekontrolli üheks töövooks.",
+      roleShort: "tööprotsessi kaardistamine, lahenduse ülesehitus ja arendus",
+      modules: [
+        { name: "OCR", text: "Tuvastab skaneeritud dokumentide teksti ja parandab lehekülgede suunda." },
+        { name: "Splittija", text: "Jagab mahuka lähtefaili eraldi dokumentideks." },
+        { name: "SmartMeta", text: "Tuvastab metaandmed ja koondab need ülevaatamiseks." },
+        { name: "Exceli kontroll", text: "Kontrollib koondatud andmeid ja toob erinevused välja." },
+      ],
       image: sharedImages.documentWorkflow,
       imageAlt: "Dokumenditöötluse rakenduse moodulite käivitusvaade",
       gallery: [
@@ -36,47 +45,65 @@ export const projectsByLanguage = {
         },
       ],
       problem:
-        "Dokumenditöö koosnes mitmest üksteisele järgnevast etapist, mille vahel tuli faile käsitsi liigutada, andmeid kontrollida ja parandada. See võttis aega, tekitas ootejärjekordi ja suurendas riski, et mõni viga liigub järgmisse etappi.",
+        "Eri dokumenditöötluse mooduleid tuli käivitada ja jälgida eraldi.",
       system:
-        "Ehitasin ühe käivitusvaatega töövoo: OCR valmistab materjali ette, Splittija eraldab dokumendid, SmartMeta leiab metaandmed, Exceli kontroll võrdleb välju ja kinnitatud tulemus liigub PostgreSQL-i. Moodulid annavad töö automaatselt üksteisele edasi.",
+        "Sidusin moodulid ühise käivitusvaate, faililoogika ja kontrollireeglitega.",
       simplified:
-        "Kasutaja käivitab protsessi ühest kohast. Kindlad juhud liiguvad automaatselt ühe töövoona ning kontrolli vajavad erandid koonduvad ühte selgesse kohta. Nii on vähem käsitööd, ootamist, korduvat kontrolli ja hilisemat vigade parandamist.",
+        "Kindlad tulemused liiguvad edasi. Ebaselged andmed jäävad kasutajale kontrollida.",
       role:
-        "Kaardistasin olemasoleva töö, ehitasin moodulid ühiseks süsteemiks ning lõin reeglid, logid ja kontrollpunktid, mis hoiavad protsessi jälgitava ja kasutaja kontrolli all.",
+        "Kaardistasin töö etapid, sidusin moodulid kokku ning ehitasin reeglid, logid ja kontrollpunktid.",
       technologies: ["Python", "OCR", "SmartMeta", "Excel", "XML", "PostgreSQL", "SQL"],
-      supportingDocument: "documents/naidisdokument.pdf",
     },
     {
       title: "Kontopildi sorteerija",
-      type: "AI-toega sisemine automatiseerimine",
+      type: "Sisemine failitöötluse automatiseerimine",
+      summary: "Windowsi tööriist kontopiltide tuvastamiseks ja sorteerimiseks.",
+      description: "Rakendus loeb pildilt konto- või kliendinumbri, kontrollib seda PostgreSQL-ist ja liigutab faili sobivasse kausta. Ebaselge vaste jääb kasutajale üle vaadata.",
+      roleShort: "otsustusreeglid, kasutajaliides ja rakenduse arendus",
       visualLabel: "Fail → tuvastus → kontroll → õige kaust",
       problem:
-        "Iga uue pildi puhul pidi inimene leidma kontonumbri, kontrollima selle andmeallikast ja paigutama faili õigesse kohta. Sama otsustusjada kordus fail faili järel ning eksimus tähendas hilisemat otsimist ja parandamist.",
+        "Iga fail tuli avada, number lugeda, andmebaasist kontrollida ja õigesse kausta tõsta.",
+      system:
+        "Rakendus loeb numbri, kontrollib seda PostgreSQL-ist ja valib faili sihtkausta.",
       simplified:
-        "Tööriist jälgib uusi faile, kasutab numbri tuvastamiseks kohalikku AI-d ja kontrollib tulemust andmeallikast. Kindel vaste liigub automaatselt õigesse kohta; ebaselged juhud jäävad inimesele ülevaatamiseks. Nii muutus igapäevane sorteerimine kiiremaks erandipõhiseks kontrolliks, kus on vähem käsitööd ja parem ülevaade.",
+        "Kindel vaste liigub automaatselt. Ebaselge jääb kasutajale kontrollida.",
       role:
-        "Kaardistasin otsustusloogika ning ehitasin kasutajaliidese, kaustajälgija, tööjärjekorra, kohaliku AI ühenduse, andmekontrollid ja tegevuslogi.",
+        "Kaardistasin otsustusreeglid ning ehitasin kasutajaliidese, kaustajälgimise, AI-tuvastuse ja andmekontrolli.",
       technologies: ["C#", ".NET 8", "WPF", "AI-nägemine", "PostgreSQL"],
     },
     {
       title: "Räim Ruudus",
       type: "Ettevõtte veeb ja iseteeninduslik sisuhaldus",
+      summary: "Reacti veebileht koos sisuhaldusega.",
+      description: "Ehitasin veebilehe, kus omanik saab admin-vaates muuta menüüd, lahtiolekuaegu ja teateid.",
+      roleShort: "lahenduse kavandamine, arendus ja kasutuselevõtt",
       image: sharedImages.raimRuudus,
       imageAlt: "Räim Ruudus veebilehe avaleht",
       problem:
-        "Naissaarel tegutseval ettevõttel oli vaja selget veebilehte, kus külastaja leiaks kiiresti menüü, lahtiolekuajad, asukoha ja kontaktid. Omanik pidi saama muutuvat infot ise hallata, ilma et iga uuendus vajaks arendaja abi.",
+        "Menüü ja teated muutusid sageli, kuid iga uuendus sõltus arendajast.",
+      system:
+        "Ehitasin Reacti veebilehe koos admin-vaate ja Supabase'i sisuhaldusega.",
       simplified:
-        "Ettevõttel on nüüd selge avalik veeb ja lihtne admin-vaade, kus omanik saab sisu iseseisvalt uuendada. Külastaja leiab vajaliku info kiiremini, omanikul on muudatustest parem ülevaade ning igapäevased uuendused ei jää arendaja järel ootama.",
+        "Omanik saab menüüd ja teateid lähtekoodi muutmata uuendada.",
       role:
-        "Ehitasin Reacti ja Vite'iga avaliku vaate ning admin-vaate, ühendasin Supabase'i sisuhalduse ja seadistasin avaldamise, domeeni, SEO ning analüütika.",
+        "Tegin avaliku ja admin-vaate, sisuhalduse ühenduse ning seadistasin avaldamise, domeeni, SEO ja analüütika.",
       technologies: ["React", "Vite", "Supabase", "GitHub Pages", "SEO"],
       liveUrl: "https://www.raimruudus.ee/",
     },
   ],
   en: [
     {
-      title: "Document processing application",
+      title: "Document Processing Workbench",
       type: "Internal workflow automation",
+      summary: "A document-processing application controlled from a single interface.",
+      description: "The application connects OCR, document splitting, metadata extraction and data validation into one workflow.",
+      roleShort: "workflow mapping, solution design and development",
+      modules: [
+        { name: "OCR", text: "Recognises text in scanned documents and corrects page orientation." },
+        { name: "Splitter", text: "Separates a large source file into individual documents." },
+        { name: "SmartMeta", text: "Identifies metadata and brings it together for review." },
+        { name: "Excel validation", text: "Checks the collected data and highlights differences." },
+      ],
       image: sharedImages.documentWorkflow,
       imageAlt: "Launcher view for the document processing application",
       gallery: [
@@ -102,39 +129,48 @@ export const projectsByLanguage = {
         },
       ],
       problem:
-        "Document work consisted of several consecutive stages. Files had to be moved, checked and corrected by hand between them, which created delays and increased the risk of mistakes moving into the next step.",
+        "The document-processing modules had to be started and tracked separately.",
       system:
-        "I built a workflow with one launcher: OCR prepares the material, Splitter separates the documents, SmartMeta identifies metadata, Excel validation compares fields and approved results move to PostgreSQL. Each module hands the work to the next automatically.",
+        "I connected them through a shared launcher, file routing and validation rules.",
       simplified:
-        "The user starts the process in one place. Clear cases move automatically through the full workflow, while exceptions are gathered in one clear review point. Manual file handling, repeated checks and later corrections were reduced.",
+        "Clear results continue automatically; uncertain data is left for review.",
       role:
-        "I mapped the existing work, brought the modules into one system and built the rules, logs and checkpoints that keep the process traceable and under the user’s control.",
+        "I mapped the stages, connected the modules and built the rules, logs and checkpoints.",
       technologies: ["Python", "OCR", "SmartMeta", "Excel", "XML", "PostgreSQL", "SQL"],
-      supportingDocument: "documents/naidisdokument.pdf",
     },
     {
       title: "Account image sorter",
-      type: "AI-assisted internal automation",
+      type: "Internal file-processing automation",
+      summary: "A Windows tool for identifying and sorting account images.",
+      description: "The application reads an account or customer number from an image, checks it against PostgreSQL and moves the file to the matching folder. Uncertain matches are left for review.",
+      roleShort: "decision rules, user interface and application development",
       visualLabel: "File → recognition → validation → correct folder",
       problem:
-        "For every new image, someone had to find the account number, verify it against a data source and place the file in the right location. The same decision chain repeated file after file, and mistakes created extra searching and rework.",
+        "Each file had to be opened, read, checked against the database and moved by hand.",
+      system:
+        "The application reads the number, checks it against PostgreSQL and selects the destination folder.",
       simplified:
-        "The tool watches for new files, uses local AI to identify the number and verifies it against the data source. Confirmed matches move automatically; unclear cases are left for review. Daily sorting became an exception-based check instead of a manual routine.",
+        "A confident match moves automatically; an uncertain one is left for review.",
       role:
-        "I mapped the decision logic and built the interface, folder watcher, processing queue, local AI integration, data checks and activity log.",
+        "I defined the decision rules and built the interface, folder monitoring, AI extraction and data validation.",
       technologies: ["C#", ".NET 8", "WPF", "AI vision", "PostgreSQL"],
     },
     {
       title: "Räim Ruudus",
       type: "Business website with self-service content management",
+      summary: "A React website with an admin interface.",
+      description: "I built a website where the owner can update menus, opening hours and notices through an admin view.",
+      roleShort: "solution design, development and deployment",
       image: sharedImages.raimRuudus,
       imageAlt: "Räim Ruudus website home page",
       problem:
-        "A business on Naissaar needed a clear website where visitors could quickly find the menu, opening hours, location and contact details. The owner also needed to update changing information without relying on a developer.",
+        "Menus and notices changed often, but every update depended on a developer.",
+      system:
+        "I built a React website with an admin view and Supabase content management.",
       simplified:
-        "The business now has a clear public website and a simple admin view for managing content independently. Visitors find the essential information quickly, routine updates no longer require a developer and usage can be followed through analytics.",
+        "The owner can update menus and notices without editing the code.",
       role:
-        "I built the public and admin views with React and Vite, connected Supabase content management, and configured deployment, the domain, SEO and analytics.",
+        "I built the public and admin views, connected content management, and configured deployment, the domain, SEO and analytics.",
       technologies: ["React", "Vite", "Supabase", "GitHub Pages", "SEO"],
       liveUrl: "https://www.raimruudus.ee/",
     },
