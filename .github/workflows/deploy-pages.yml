@@ -1,4 +1,4 @@
-name: Deploy portfolio to GitHub Pages
+name: Deploy Taveron to GitHub Pages
 
 on:
   push:
@@ -35,10 +35,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build portfolio
+      - name: Build Taveron
         run: npm run build
         env:
-          VITE_BASE_PATH: /Portfoolio/
+          VITE_BASE_PATH: /Taveron/
           VITE_FORMSPREE_ENDPOINT: https://formspree.io/f/mgogkgrg
 
       - name: Upload GitHub Pages artifact
