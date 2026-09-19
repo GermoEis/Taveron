@@ -1,7 +1,6 @@
-# Praktilised lahendused tööprotsessidele
+# Taveron
 
-Reacti ja Vitega tehtud personaalne veebileht, mis tutvustab tööprotsesside
-automatiseerimist, andmelahendusi ja praktilisi sisemisi tööriistu.
+Taveron on ettevõtte veebileht, mis tutvustab praktilisi digilahendusi, tööprotsesside automatiseerimist, andmelahendusi ja sisemisi tööriistu.
 
 ## Käivitamine
 
@@ -25,35 +24,27 @@ Valmis ehitus luuakse kausta `dist`.
 
 ## Sisu muutmine
 
-- Lehe struktuur ja projektivaated: `src/App.jsx`
+- Lehe struktuur ja vaated: `src/App.jsx`
 - Jagatud eestikeelne sisu: `src/data/content.js`
-- Projektinäited: `src/data/projects.js`
+- Projektinäited ja teenuste kirjeldused: `src/data/projects.js`
 - Kujundus: `src/styles.css`
-- Avalikud failid ja sertifikaat: `public`
+- Avalikud failid ja staatilised varad: `public`
 
 ## GitHub Pages
 
-`main` harusse push'imisel ehitab ja avaldab `.github/workflows/deploy-pages.yml`
-portfoolio automaatselt GitHub Pagesi aadressile:
+`main` harusse push'imisel ehitab ja avaldab `.github/workflows/deploy-pages.yml` Taveroni veebilehe GitHub Pagesi aadressile:
 
-`https://germoeis.github.io/Portfoolio/`
+`https://germoeis.github.io/Taveron/`
 
-GitHubi hoidla seadetes peab **Settings → Pages → Source** väärtus olema
-**GitHub Actions**. Workflow määrab Vite'i baasrajaks `/Portfoolio/` ning lisab
-Formspree endpointi build-keskkonna kaudu.
+GitHubi hoidla seadetes peab **Settings → Pages → Source** väärtus olema **GitHub Actions**. Workflow määrab Vite'i baasrajaks `/Taveron/` ning lisab Formspree endpointi build-keskkonna kaudu.
 
-Lehel kasutatavad pildid, näidis-PDF ja Pythoni sertifikaat arvestavad Vite'i
-`BASE_URL` väärtusega. Seetõttu töötavad lingid nii custom domeenil kui ka GitHub
-Pagesi repo alamteel.
+Lehel kasutatavad pildid ja failid arvestavad Vite'i `BASE_URL` väärtusega. Seetõttu töötavad lingid nii custom domeenil kui ka GitHub Pagesi repo alamteel.
 
 ## Turvapäised
 
-Leht kasutab HTML-is CSP-d ja ranget referrer-poliitikat. GitHub Pages ei
-võimalda repo kaudu määrata kõiki HTTP vastusepäiseid, seega peab hoidla
-seadetes olema sisse lülitatud **Enforce HTTPS**.
+Leht kasutab HTML-is CSP-d ja ranget referrer-poliitikat. GitHub Pages ei võimalda repo kaudu määrata kõiki HTTP vastusepäiseid, seega peab hoidla seadetes olema sisse lülitatud **Enforce HTTPS**.
 
-Kui leht liigub pöördproksi või muu päiseid toetava majutuse taha, määra seal
-lisaks järgmised HTTP vastusepäised:
+Kui leht liigub pöördproksi või muu päiseid toetava majutuse taha, määra seal lisaks järgmised HTTP vastusepäised:
 
 ```text
 Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formspree.io; form-action 'none'; frame-src 'none'; frame-ancestors 'none'; worker-src 'none'; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests
@@ -66,9 +57,7 @@ Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Resource-Policy: same-origin
 ```
 
-`frame-ancestors`, HSTS, `X-Content-Type-Options`, `X-Frame-Options` ja
-`Permissions-Policy` vajavad HTTP vastusepäist ning neid ei saa GitHub Pagesis
-`<meta>` elemendiga usaldusväärselt asendada.
+`frame-ancestors`, HSTS, `X-Content-Type-Options`, `X-Frame-Options` ja `Permissions-Policy` vajavad HTTP vastusepäist ning neid ei saa GitHub Pagesis `<meta>` elemendiga usaldusväärselt asendada.
 
 ## Enne avaldamist
 
